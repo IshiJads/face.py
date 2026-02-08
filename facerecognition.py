@@ -1,12 +1,12 @@
 import cv2
 import numpy as np
 import os
-haarfile = "haarcascade_frontalface_default.xml"
+haarfile = cv2.data.haarcascades+"haarcascade_frontalface_default.xml"
 datasets = "datasets"
 subdata = "Ishita"
 path = os.path.join(datasets,subdata)
-if not path:
-    os.mkdir(path)
+if not os.path.isdir(path):
+    os.makedirs(path)
 (width,height) = (200,200)
 face_cascade = cv2.CascadeClassifier(haarfile)
 webcam = cv2.VideoCapture(0)
@@ -22,4 +22,4 @@ while count<=30:
         cv2.imwrite("%s/%s.png"%(path,count),faceresize)
     count+=1
     cv2.imshow("facedetector",image)
-    cv2.waitKey(0)
+    cv2.waitKey(10)
